@@ -1,6 +1,8 @@
 ﻿<Window x:Class="AnnuaireEntreprise.ManageSitesWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:AnnuaireEntreprise"
         Title="Gérer les Sites" Height="300" Width="400">
     <Grid>
         <Grid.RowDefinitions>
@@ -9,7 +11,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="SiteTextBox" Width="200" Margin="0,0,10,0" Text="Nom du site..."/>
+            <TextBox x:Name="SiteTextBox" Width="200" Margin="0,0,10,0" Controls:TextBoxHelper.Watermark="Nom du site..."/>
             <Button Content="Ajouter" Width="100" Click="OnAddSiteButtonClick"/>
         </StackPanel>
         <ListView x:Name="SitesListView" Grid.Row="1" Margin="10" SelectionChanged="OnSiteSelectionChanged">
@@ -25,4 +27,3 @@
         </StackPanel>
     </Grid>
 </Window>
-
