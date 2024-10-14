@@ -14,13 +14,13 @@
 
         <!-- Section de recherche -->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0" PlaceholderText="Rechercher par nom..."/>
-            <ComboBox x:Name="SiteComboBox" Width="150" Margin="0,0,10,0" PlaceholderText="Sélectionner un site"/>
-            <ComboBox x:Name="ServiceComboBox" Width="150" PlaceholderText="Sélectionner un service"/>
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0" Text="Rechercher par nom..."/>
+            <ComboBox x:Name="SiteComboBox" Width="150" Margin="0,0,10,0" Text="Sélectionner un site"/>
+            <ComboBox x:Name="ServiceComboBox" Width="150" Text="Sélectionner un service"/>
             <Button Content="Rechercher" Width="100" Margin="10,0,0,0" Click="OnSearchButtonClick"/>
         </StackPanel>
 
-        <Button Content="Gérer les Sites" Width="150" Margin="10" Click="OnManageSitesButtonClick"/>
+        <Button Content="Gérer les Sites" Margin="277,10,10,10" Click="OnManageSitesButtonClick" Grid.Column="1"/>
 
 
 

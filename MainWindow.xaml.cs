@@ -70,5 +70,10 @@ namespace AnnuaireEntreprise
                 SiteTextBlock.Text = selectedEmploye.Site?.Ville;
             }
         }
+        private void OnManageSitesButtonClick(object sender, RoutedEventArgs e)
+        {
+            var manageSitesWindow = new ManageSitesWindow();
+            manageSitesWindow.ShowDialog();
+        }
     }
 }

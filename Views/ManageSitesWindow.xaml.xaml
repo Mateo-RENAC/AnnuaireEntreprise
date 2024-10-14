@@ -9,7 +9,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="SiteTextBox" Width="200" Margin="0,0,10,0" PlaceholderText="Nom du site..."/>
+            <TextBox x:Name="SiteTextBox" Width="200" Margin="0,0,10,0" Text="Nom du site..."/>
             <Button Content="Ajouter" Width="100" Click="OnAddSiteButtonClick"/>
         </StackPanel>
         <ListView x:Name="SitesListView" Grid.Row="1" Margin="10" SelectionChanged="OnSiteSelectionChanged">
