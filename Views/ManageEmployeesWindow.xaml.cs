@@ -38,27 +38,6 @@ namespace AnnuaireEntreprise
             EmployeesListView.ItemsSource = _context.Employes.Include(e => e.Service).Include(e => e.Site).ToList();
         }
 
-        private void OnAddEmployeeButtonClick(object sender, RoutedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(NomTextBox.Text) && !string.IsNullOrEmpty(PrenomTextBox.Text))
-            {
-                var employe = new Employe
-                {
-                    Nom = NomTextBox.Text,
-                    Prenom = PrenomTextBox.Text,
-                    TelephoneFixe = TelephoneFixeTextBox.Text,
-                    TelephonePortable = TelephonePortableTextBox.Text,
-                    Email = EmailTextBox.Text,
-                    ServiceId = (int)ServiceComboBox.SelectedValue,
-                    SiteId = (int)SiteComboBox.SelectedValue
-                };
-                _context.Employes.Add(employe);
-                _context.SaveChanges();
-                LoadEmployees();
-                ClearForm();
-            }
-        }
-
         private void OnEditEmployeeButtonClick(object sender, RoutedEventArgs e)
         {
             if (EmployeesListView.SelectedItem is Employe selectedEmploye)
@@ -111,6 +90,53 @@ namespace AnnuaireEntreprise
             ServiceComboBox.SelectedIndex = -1;
             SiteComboBox.SelectedIndex = -1;
         }
+
+        private void OnAddEmployeeButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (ValidateEmployeeForm())
+            {
+                var employe = new Employe
+                {
+                    Nom = NomTextBox.Text,
+                    Prenom = PrenomTextBox.Text,
+                    TelephoneFixe = TelephoneFixeTextBox.Text,
+                    TelephonePortable = TelephonePortableTextBox.Text,
+                    Email = EmailTextBox.Text,
+                    ServiceId = (int)ServiceComboBox.SelectedValue,
+                    SiteId = (int)SiteComboBox.SelectedValue
+                };
+                _context.Employes.Add(employe);
+                _context.SaveChanges();
+                LoadEmployees();
+                ClearForm();
+            }
+        }
+
+        private bool ValidateEmployeeForm()
+        {
+            if (string.IsNullOrEmpty(NomTextBox.Text))
+            {
+                MessageBox.Show("Le nom est requis.", "Erreur de validation", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(PrenomTextBox.Text))
+            {
+                MessageBox.Show("Le prénom est requis.", "Erreur de validation", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (ServiceComboBox.SelectedValue == null)
+            {
+                MessageBox.Show("Le service est requis.", "Erreur de validation", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (SiteComboBox.SelectedValue == null)
+            {
+                MessageBox.Show("Le site est requis.", "Erreur de validation", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
     }
+
 }
 
