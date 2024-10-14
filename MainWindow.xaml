@@ -1,6 +1,7 @@
 ﻿<Window x:Class="AnnuaireEntreprise.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Annuaire Entreprise" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -14,8 +15,8 @@
         </Grid.ColumnDefinitions>
 
         <!-- Section de recherche -->
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0" Text="Rechercher par nom..."/>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="30,10,10,10">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0" Controls:TextBoxHelper.Watermark="Rechercher par nom..."/>
             <ComboBox x:Name="SiteComboBox" Width="150" Margin="0,0,10,0" Text="Sélectionner un site"/>
             <ComboBox x:Name="ServiceComboBox" Width="150" Text="Sélectionner un service"/>
             <Button Content="Rechercher" Width="100" Margin="10,0,0,0" Click="OnSearchButtonClick"/>
@@ -29,7 +30,7 @@
         </StackPanel>
 
         <!-- Liste des employés -->
-        <ListView x:Name="EmployeesListView" Grid.Row="2" Grid.Column="0" Margin="10">
+        <ListView x:Name="EmployeesListView" Grid.Row="2" Grid.Column="0" Margin="10" SelectionChanged="EmployeesListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}" Width="100"/>

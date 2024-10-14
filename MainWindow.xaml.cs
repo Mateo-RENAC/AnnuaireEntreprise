@@ -33,6 +33,7 @@ namespace AnnuaireEntreprise
             ServiceComboBox.DisplayMemberPath = "Nom";
             ServiceComboBox.SelectedValuePath = "Id";
         }
+
         private void LoadEmployees()
         {
             EmployeesListView.ItemsSource = _context.Employes.Include(e => e.Service).Include(e => e.Site).ToList();
@@ -75,6 +76,7 @@ namespace AnnuaireEntreprise
                 SiteTextBlock.Text = selectedEmploye.Site?.Ville;
             }
         }
+
         private void OnManageSitesButtonClick(object sender, RoutedEventArgs e)
         {
             var manageSitesWindow = new ManageSitesWindow();
@@ -86,13 +88,11 @@ namespace AnnuaireEntreprise
             var manageServicesWindow = new ManageServicesWindow();
             manageServicesWindow.ShowDialog();
         }
+
         private void OnManageEmployeesButtonClick(object sender, RoutedEventArgs e)
         {
             var manageEmployeesWindow = new ManageEmployeesWindow();
             manageEmployeesWindow.ShowDialog();
         }
-
-
-
     }
 }
