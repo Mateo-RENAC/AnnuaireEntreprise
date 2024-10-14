@@ -13,31 +13,8 @@
         </Grid.ColumnDefinitions>
 
         <!-- Section de recherche -->
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0" Text="Rechercher par nom..."/>
-            <ComboBox x:Name="SiteComboBox" Width="150" Margin="0,0,10,0" Text="Sélectionner un site"/>
-            <ComboBox x:Name="ServiceComboBox" Width="150" Text="Sélectionner un service"/>
-            <Button Content="Rechercher" Width="100" Margin="10,0,0,0" Click="OnSearchButtonClick"/>
-        </StackPanel>
-
-        <Button Content="Gérer les Sites" Margin="277,10,10,10" Click="OnManageSitesButtonClick" Grid.Column="1"/>
-
-
-
-        <!-- Liste des employés -->
-        <ListView x:Name="EmployeesListView" Grid.Row="1" Grid.Column="0" Margin="10">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}" Width="100"/>
-                    <GridViewColumn Header="Prénom" DisplayMemberBinding="{Binding Prenom}" Width="100"/>
-                    <GridViewColumn Header="Téléphone" DisplayMemberBinding="{Binding TelephoneFixe}" Width="100"/>
-                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="200"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
         <!-- Détails de l'employé sélectionné -->
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+        <StackPanel Grid.Row="1" Margin="398,126,22,30" Grid.ColumnSpan="2">
             <TextBlock Text="Détails de l'employé" FontWeight="Bold" Margin="0,0,0,10"/>
             <TextBlock Text="Nom :" FontWeight="Bold"/>
             <TextBlock x:Name="NomTextBlock"/>
@@ -54,5 +31,34 @@
             <TextBlock Text="Site :" FontWeight="Bold"/>
             <TextBlock x:Name="SiteTextBlock"/>
         </StackPanel>
+
+        <!-- Section de recherche -->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="10">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0" Text="Rechercher par nom..."/>
+            <ComboBox x:Name="SiteComboBox" Width="150" Margin="0,0,10,0" Text="Sélectionner un site"/>
+            <ComboBox x:Name="ServiceComboBox" Width="150" Text="Sélectionner un service"/>
+            <Button Content="Rechercher" Width="100" Margin="10,0,0,0" Click="OnSearchButtonClick"/>
+        </StackPanel>
+
+        <Button Content="Gérer les Sites" Margin="10,10,277,346" Click="OnManageSitesButtonClick" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="Gérer les Services" Margin="132,10,156,346" Click="OnManageServicesButtonClick" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="Gérer les Employés" Margin="249,10,37,346" Click="OnManageEmployeesButtonClick" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.504,0.579"/>
+
+
+
+
+        <!-- Liste des employés -->
+        <ListView x:Name="EmployeesListView" Grid.Row="1" Grid.Column="0" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}" Width="100"/>
+                    <GridViewColumn Header="Prénom" DisplayMemberBinding="{Binding Prenom}" Width="100"/>
+                    <GridViewColumn Header="Téléphone" DisplayMemberBinding="{Binding TelephoneFixe}" Width="100"/>
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="200"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Détails de l'employé sélectionné -->
     </Grid>
 </Window>

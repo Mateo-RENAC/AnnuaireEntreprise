@@ -75,5 +75,19 @@ namespace AnnuaireEntreprise
             var manageSitesWindow = new ManageSitesWindow();
             manageSitesWindow.ShowDialog();
         }
+
+        private void OnManageServicesButtonClick(object sender, RoutedEventArgs e)
+        {
+            var manageServicesWindow = new ManageServicesWindow();
+            manageServicesWindow.ShowDialog();
+        }
+        private void OnManageEmployeesButtonClick(object sender, RoutedEventArgs e)
+        {
+            var manageEmployeesWindow = new ManageEmployeesWindow();
+            manageEmployeesWindow.ShowDialog();
+        }
+
+
+
     }
 }

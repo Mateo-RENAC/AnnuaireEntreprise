@@ -1,0 +1,39 @@
+﻿<Window x:Class="AnnuaireEntreprise.ManageEmployeesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gérer les Employés" Height="450" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
+            <TextBox x:Name="NomTextBox" Width="200" Margin="0,0,10,0" Text="Nom..."/>
+            <TextBox x:Name="PrenomTextBox" Width="200" Margin="0,0,10,0" Text="Prénom..."/>
+            <TextBox x:Name="TelephoneFixeTextBox" Width="200" Margin="0,0,10,0" Text="Téléphone Fixe..."/>
+            <TextBox x:Name="TelephonePortableTextBox" Width="200" Margin="0,0,10,0" Text="Téléphone Portable..."/>
+            <TextBox x:Name="EmailTextBox" Width="200" Margin="0,0,10,0" Text="Email..."/>
+            <ComboBox x:Name="ServiceComboBox" Width="200" Margin="0,0,10,0" Text="Sélectionner un service"/>
+            <ComboBox x:Name="SiteComboBox" Width="200" Margin="0,0,10,0" Text="Sélectionner un site"/>
+            <Button Content="Ajouter" Width="100" Click="OnAddEmployeeButtonClick"/>
+        </StackPanel>
+        <ListView x:Name="EmployeesListView" Grid.Row="1" Margin="10" SelectionChanged="OnEmployeeSelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}" Width="100"/>
+                    <GridViewColumn Header="Prénom" DisplayMemberBinding="{Binding Prenom}" Width="100"/>
+                    <GridViewColumn Header="Téléphone Fixe" DisplayMemberBinding="{Binding TelephoneFixe}" Width="100"/>
+                    <GridViewColumn Header="Téléphone Portable" DisplayMemberBinding="{Binding TelephonePortable}" Width="100"/>
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="200"/>
+                    <GridViewColumn Header="Service" DisplayMemberBinding="{Binding Service.Nom}" Width="100"/>
+                    <GridViewColumn Header="Site" DisplayMemberBinding="{Binding Site.Ville}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <Button Content="Modifier" Width="100" Margin="0,0,10,0" Click="OnEditEmployeeButtonClick"/>
+            <Button Content="Supprimer" Width="100" Click="OnDeleteEmployeeButtonClick"/>
+        </StackPanel>
+    </Grid>
+</Window>
