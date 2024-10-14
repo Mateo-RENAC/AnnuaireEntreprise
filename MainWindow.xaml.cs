@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using AnnuaireEntreprise.Data;
 using AnnuaireEntreprise.Models;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,7 @@ namespace AnnuaireEntreprise
             ServiceComboBox.DisplayMemberPath = "Nom";
             ServiceComboBox.SelectedValuePath = "Id";
         }
+
         private void LoadEmployees()
         {
             EmployeesListView.ItemsSource = _context.Employes.Include(e => e.Service).Include(e => e.Site).ToList();
@@ -66,15 +68,10 @@ namespace AnnuaireEntreprise
         {
             if (EmployeesListView.SelectedItem is Employe selectedEmploye)
             {
-                NomTextBlock.Text = selectedEmploye.Nom;
-                PrenomTextBlock.Text = selectedEmploye.Prenom;
-                TelephoneFixeTextBlock.Text = selectedEmploye.TelephoneFixe;
-                TelephonePortableTextBlock.Text = selectedEmploye.TelephonePortable;
-                EmailTextBlock.Text = selectedEmploye.Email;
-                ServiceTextBlock.Text = selectedEmploye.Service?.Nom;
-                SiteTextBlock.Text = selectedEmploye.Site?.Ville;
+                ShowEmployeeDetails(selectedEmploye);
             }
         }
+
         private void OnManageSitesButtonClick(object sender, RoutedEventArgs e)
         {
             var manageSitesWindow = new ManageSitesWindow();
@@ -86,13 +83,30 @@ namespace AnnuaireEntreprise
             var manageServicesWindow = new ManageServicesWindow();
             manageServicesWindow.ShowDialog();
         }
+
         private void OnManageEmployeesButtonClick(object sender, RoutedEventArgs e)
         {
             var manageEmployeesWindow = new ManageEmployeesWindow();
             manageEmployeesWindow.ShowDialog();
         }
 
+        private void OnEmployeesListViewLeftClick(object sender, MouseButtonEventArgs e)
+        {
+            if (EmployeesListView.SelectedItem is Employe selectedEmploye)
+            {
+                ShowEmployeeDetails(selectedEmploye);
+            }
+        }
 
-
+        private void ShowEmployeeDetails(Employe employe)
+        {
+            NomTextBlock.Text = employe.Nom;
+            PrenomTextBlock.Text = employe.Prenom;
+            TelephoneFixeTextBlock.Text = employe.TelephoneFixe;
+            TelephonePortableTextBlock.Text = employe.TelephonePortable;
+            EmailTextBlock.Text = employe.Email;
+            ServiceTextBlock.Text = employe.Service?.Nom;
+            SiteTextBlock.Text = employe.Site?.Ville;
+        }
     }
 }

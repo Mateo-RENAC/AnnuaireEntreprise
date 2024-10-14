@@ -29,7 +29,7 @@
         </StackPanel>
 
         <!-- Liste des employés -->
-        <ListView x:Name="EmployeesListView" Grid.Row="2" Grid.Column="0" Margin="10">
+        <ListView x:Name="EmployeesListView" Grid.Row="2" Grid.Column="0" Margin="10" MouseLeftButtonUp="OnEmployeesListViewLeftClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}" Width="100"/>
