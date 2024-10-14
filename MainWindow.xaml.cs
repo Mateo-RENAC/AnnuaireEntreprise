@@ -17,6 +17,7 @@ namespace AnnuaireEntreprise
             _context = new AnnuaireContext();
             LoadSites();
             LoadServices();
+            LoadEmployees();
         }
 
         private void LoadSites()
@@ -31,6 +32,10 @@ namespace AnnuaireEntreprise
             ServiceComboBox.ItemsSource = _context.Services.ToList();
             ServiceComboBox.DisplayMemberPath = "Nom";
             ServiceComboBox.SelectedValuePath = "Id";
+        }
+        private void LoadEmployees()
+        {
+            EmployeesListView.ItemsSource = _context.Employes.Include(e => e.Service).Include(e => e.Site).ToList();
         }
 
         private void OnSearchButtonClick(object sender, RoutedEventArgs e)
