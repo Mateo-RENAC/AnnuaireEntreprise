@@ -22,11 +22,11 @@
         </StackPanel>
 
         <!-- Boutons de gestion -->
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <Button Content="Gérer les Sites" Width="150" Margin="10,0,0,0" Click="OnManageSitesButtonClick"/>
-            <Button Content="Gérer les Services" Width="150" Margin="10,0,0,0" Click="OnManageServicesButtonClick"/>
-            <Button Content="Gérer les Employés" Width="150" Margin="10,0,0,0" Click="OnManageEmployeesButtonClick"/>
-        </StackPanel>
+		<StackPanel x:Name="ManagementButtonsPanel" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Visibility="Collapsed">
+			<Button Content="Gérer les Sites" Width="150" Margin="10,0,0,0" Click="OnManageSitesButtonClick"/>
+			<Button Content="Gérer les Services" Width="150" Margin="10,0,0,0" Click="OnManageServicesButtonClick"/>
+			<Button Content="Gérer les Employés" Width="150" Margin="10,0,0,0" Click="OnManageEmployeesButtonClick"/>
+		</StackPanel>
 
         <!-- Liste des employés -->
         <ListView x:Name="EmployeesListView" Grid.Row="2" Grid.Column="0" Margin="10">
