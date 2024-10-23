@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows;
 using AnnuaireEntreprise.Data;
+using AnnuaireEntreprise.Services.Site;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AnnuaireEntreprise
@@ -24,6 +25,7 @@ namespace AnnuaireEntreprise
         {
             services.AddDbContext<AnnuaireContext>();
             services.AddTransient<IServicesService, ServicesService>();
+            services.AddTransient<ISiteService, ISiteService>();
             services.AddTransient<MainWindow>();
         }
 
