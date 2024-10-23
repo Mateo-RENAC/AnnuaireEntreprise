@@ -5,7 +5,6 @@ using System.Windows.Input;
 using AnnuaireEntreprise.Data;
 using AnnuaireEntreprise.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Windows.Input;
 using System.Diagnostics;
 
 namespace AnnuaireEntreprise
@@ -112,6 +111,7 @@ namespace AnnuaireEntreprise
             EmailTextBlock.Text = employe.Email;
             ServiceTextBlock.Text = employe.Service?.Nom;
             SiteTextBlock.Text = employe.Site?.Ville;
+        }
             
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
