@@ -11,14 +11,16 @@ namespace AnnuaireEntreprise
 {
     public partial class MainWindow : Window
     {
-        private AnnuaireContext _context;
+        private readonly AnnuaireContext _context;
+        private readonly IServicesService _serviceService;
         private List<Key> _konamiCode = new List<Key> { Key.Up, Key.Up, Key.Down, Key.Down, Key.Left, Key.Right, Key.Left, Key.Right };
         private Queue<Key> _inputKeys = new Queue<Key>();
 
-        public MainWindow()
+        public MainWindow(IServicesService serviceService)
         {
             InitializeComponent();
             _context = new AnnuaireContext();
+            _serviceService = serviceService;
             LoadSites();
             LoadServices();
             LoadEmployees();
@@ -34,9 +36,7 @@ namespace AnnuaireEntreprise
 
         private void LoadServices()
         {
-            ServiceComboBox.ItemsSource = _context.Services.ToList();
-            ServiceComboBox.DisplayMemberPath = "Nom";
-            ServiceComboBox.SelectedValuePath = "Id";
+           ServiceComboBox.ItemsSource = _serviceService.GetAllServices();
         }
 
         private void LoadEmployees()
