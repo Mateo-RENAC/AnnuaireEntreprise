@@ -5,12 +5,16 @@ using System.Windows.Input;
 using AnnuaireEntreprise.Data;
 using AnnuaireEntreprise.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Input;
+using System.Diagnostics;
 
 namespace AnnuaireEntreprise
 {
     public partial class MainWindow : Window
     {
         private AnnuaireContext _context;
+        private List<Key> _konamiCode = new List<Key> { Key.Up, Key.Up, Key.Down, Key.Down, Key.Left, Key.Right, Key.Left, Key.Right };
+        private Queue<Key> _inputKeys = new Queue<Key>();
 
         public MainWindow()
         {
@@ -19,6 +23,7 @@ namespace AnnuaireEntreprise
             LoadSites();
             LoadServices();
             LoadEmployees();
+            this.KeyDown += OnKeyDown;
         }
 
         private void LoadSites()
@@ -107,6 +112,26 @@ namespace AnnuaireEntreprise
             EmailTextBlock.Text = employe.Email;
             ServiceTextBlock.Text = employe.Service?.Nom;
             SiteTextBlock.Text = employe.Site?.Ville;
+            
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            _inputKeys.Enqueue(e.Key);
+            Debug.WriteLine($"Key pressed: {e.Key}");
+
+            if (_inputKeys.Count > _konamiCode.Count)
+            {
+                _inputKeys.Dequeue();
+            }
+
+            if (_inputKeys.SequenceEqual(_konamiCode))
+            {
+                Debug.WriteLine("Konami Code entered correctly!");
+                ManagementButtonsPanel.Visibility = Visibility.Visible;
+            }
+            else if (_inputKeys.Count == _konamiCode.Count)
+            {
+                Debug.WriteLine("Incorrect Konami Code sequence.");
+            }
         }
     }
 }
