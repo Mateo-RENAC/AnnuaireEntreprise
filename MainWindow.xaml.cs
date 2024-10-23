@@ -6,6 +6,7 @@ using AnnuaireEntreprise.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Windows.Input;
 using System.Diagnostics;
+using AnnuaireEntreprise.Services.Site;
 
 namespace AnnuaireEntreprise
 {
@@ -13,14 +14,16 @@ namespace AnnuaireEntreprise
     {
         private readonly AnnuaireContext _context;
         private readonly IServicesService _serviceService;
+        private readonly ISiteService _sitesService;
         private List<Key> _konamiCode = new List<Key> { Key.Up, Key.Up, Key.Down, Key.Down, Key.Left, Key.Right, Key.Left, Key.Right };
         private Queue<Key> _inputKeys = new Queue<Key>();
 
-        public MainWindow(IServicesService serviceService)
+        public MainWindow(IServicesService serviceService, ISiteService sitesService)
         {
             InitializeComponent();
             _context = new AnnuaireContext();
             _serviceService = serviceService;
+            _sitesService = sitesService;
             LoadSites();
             LoadServices();
             LoadEmployees();
@@ -29,14 +32,14 @@ namespace AnnuaireEntreprise
 
         private void LoadSites()
         {
-            SiteComboBox.ItemsSource = _context.Sites.ToList();
+            SiteComboBox.ItemsSource = _sitesService.GetAllSites();
             SiteComboBox.DisplayMemberPath = "Ville";
             SiteComboBox.SelectedValuePath = "Id";
         }
 
         private void LoadServices()
         {
-           ServiceComboBox.ItemsSource = _serviceService.GetAllServices();
+            ServiceComboBox.ItemsSource = _serviceService.GetAllServices();
         }
 
         private void LoadEmployees()
