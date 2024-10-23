@@ -12,7 +12,7 @@ namespace AnnuaireEntreprise
     public partial class MainWindow : Window
     {
         private AnnuaireContext _context;
-        private List<Key> _konamiCode = new List<Key> { Key.Up, Key.Up, Key.Down, Key.Down, Key.Left, Key.Right, Key.Left, Key.Right };
+        private List<Key> _konamiCode = new List<Key> { Key.Up, Key.Up, Key.Down, Key.Down, Key.Up, Key.Up, Key.Down, Key.Down };
         private Queue<Key> _inputKeys = new Queue<Key>();
 
         public MainWindow()
@@ -118,6 +118,7 @@ namespace AnnuaireEntreprise
             else if (_inputKeys.Count == _konamiCode.Count)
             {
                 Debug.WriteLine("Incorrect Konami Code sequence.");
+                _inputKeys.Clear();
             }
         }
     }
